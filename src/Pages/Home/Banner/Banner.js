@@ -3,7 +3,6 @@ import burger from '../../../assets/resize-1668876038534630145burger.jpg';
 import pizza from '../../../assets/resize-16688761901365018387pizza.jpg';
 import chicken from '../../../assets/resize-1668876090247085395chicken.jpg';
 import BannerItem from './BannerItem';
-import './Banner.css';
 
 const Banner = () => {
 
