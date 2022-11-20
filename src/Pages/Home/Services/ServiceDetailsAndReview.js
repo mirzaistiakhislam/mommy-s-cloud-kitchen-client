@@ -25,7 +25,7 @@ const ServiceDetailsAndReview = () => {
             message
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('http://localhost:5000/myreviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
