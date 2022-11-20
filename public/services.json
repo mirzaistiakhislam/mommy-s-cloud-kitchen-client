@@ -1,6 +1,5 @@
 [
     {
-        "_id": "635a0c0b64a6d231228942ae",
         "service_id": "01",
         "title": "Burger",
         "img": "https://i.ibb.co/zfNRGP8/burger1.jpg",
@@ -18,7 +17,6 @@
         ]
     },
     {
-        "_id": "635a0c0b64a6d231228942af",
         "service_id": "02",
         "title": "Pizza",
         "img": "https://i.ibb.co/sys4m6x/pizza1.jpg",
@@ -36,7 +34,6 @@
         ]
     },
     {
-        "_id": "635b591a1dafe382a9da8c96",
         "service_id": "03",
         "title": "Chicken Fry",
         "img": "https://i.ibb.co/x6QSwvS/chicken1.jpg",
@@ -54,7 +51,6 @@
         ]
     },
     {
-        "_id": "635b5afc1dafe382a9da8c98",
         "service_id": "04",
         "title": "Shawarma",
         "img": "https://i.ibb.co/7XTCPSY/shwarma.jpg",
@@ -72,7 +68,6 @@
         ]
     },
     {
-        "_id": "635b5b691dafe382a9da8c99",
         "service_id": "05",
         "title": "Sandwich",
         "img": "https://i.ibb.co/3f4HRjS/sandwich.jpg",
@@ -90,7 +85,6 @@
         ]
     },
     {
-        "_id": "635b5ba51dafe382a9da8c9a",
         "service_id": "06",
         "title": "Wedges",
         "img": "https://i.ibb.co/Xb7WL5B/wedges.jpg",

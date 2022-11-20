@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
+    const { login } = useContext(AuthContext);
+
     const handleLogin = event => {
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        login(email, password)
+            .then(result => {
+                const user = result.user;
+            })
+            .then(error => console.error(error));
     }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content grid md:grid-cols-2 flex-col lg:flex-row-reverse">
