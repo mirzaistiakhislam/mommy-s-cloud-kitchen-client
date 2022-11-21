@@ -4,11 +4,12 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const SignUp = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSignUp = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
         const photoUrl = form.photoUrl.value;
@@ -17,7 +18,20 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                form.reset();
+                handleUpdateUserProfile(name, photoUrl);
             })
+            .catch(error => console.error(error));
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
             .catch(error => console.error(error));
     }
 

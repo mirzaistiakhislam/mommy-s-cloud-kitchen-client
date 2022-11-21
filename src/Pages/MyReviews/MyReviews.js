@@ -5,6 +5,7 @@ import MyReviewRow from './MyReviewRow';
 const MyReviews = () => {
 
     const { user } = useContext(AuthContext);
+    console.log(user);
 
     const [myReviews, setMyReviews] = useState([]);
 
@@ -19,7 +20,7 @@ const MyReviews = () => {
     }, [user?.email])
 
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure, you want to cancel this order');
+        const proceed = window.confirm('Are you sure, you want to delete?');
         if (proceed) {
             fetch(`http://localhost:5000/myreviews/${id}`, {
                 method: 'DELETE'

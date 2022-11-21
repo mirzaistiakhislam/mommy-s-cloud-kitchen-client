@@ -4,9 +4,14 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const AddReviews = () => {
 
-    const { _id, title, price } = useLoaderData();
+    const loader = useLoaderData();
+
+    const { _id, title } = loader;
+
+    console.log(_id, title);
     const { user } = useContext(AuthContext);
-    // console.log(user);
+    // console.log(user.photoURL);
+
 
     const handlePlaceReview = event => {
         event.preventDefault();
@@ -14,13 +19,17 @@ const AddReviews = () => {
         const name = form.name.value;
         const email = user?.email || 'unregistered';
         const message = form.message.value;
+        const photoUrl = form.photoUrl.value;
 
         const review = {
             service: _id,
             serviceName: title,
             customer: name,
             email,
-            message
+            message,
+            // image: photoURL
+            photoURL: photoUrl
+
         }
 
         fetch('http://localhost:5000/myreviews', {
@@ -32,7 +41,7 @@ const AddReviews = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data.acknowledged) {
                     alert('Review placed successfully')
                     form.reset();
@@ -47,6 +56,8 @@ const AddReviews = () => {
                 <input name="name" type="text" placeholder="Enter your name" className="input input-ghost w-full  input-bordered" required />
 
                 <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className="input input-ghost w-full  input-bordered" readOnly />
+
+                <input name="photoUrl" type="text" defaultValue={user?.photoURL} className="input input-ghost w-full  input-bordered" readOnly />
             </div>
             <textarea name="message" className="textarea textarea-bordered h-24 w-full" placeholder="Your Message" required></textarea>
 

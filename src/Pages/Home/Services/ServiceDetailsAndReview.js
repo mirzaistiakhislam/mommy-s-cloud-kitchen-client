@@ -8,6 +8,7 @@ const ServiceDetailsAndReview = () => {
 
     const { user } = useContext(AuthContext);
     // console.log(user);
+
     const [allReviews, setAllReviews] = useState([]);
 
     useEffect(() => {
@@ -47,11 +48,11 @@ const ServiceDetailsAndReview = () => {
                                         return <tr className=''>
                                             <td className=''>
                                                 {
-                                                    user && user?.photoURL !== null ?
+                                                    review.photoURL !== null ?
                                                         <>
                                                             <div className="avatar">
                                                                 <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                                                    <img src={user.photoURL} alt="user img" />
+                                                                    <img src={review.photoURL} alt="user img" />
                                                                 </div>
                                                             </div>
                                                         </>
@@ -75,7 +76,7 @@ const ServiceDetailsAndReview = () => {
                             </tbody>
                         </table>
                         :
-                        <pc className="text-">No reviews here</pc>
+                        <p className="text-">No reviews here</p>
                 }
             </div>
         </div>
