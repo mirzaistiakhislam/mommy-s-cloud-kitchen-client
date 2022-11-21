@@ -1,66 +1,83 @@
-import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const ServiceDetailsAndReview = () => {
 
     const { _id, img, title, price, description } = useLoaderData();
+
     const { user } = useContext(AuthContext);
+    // console.log(user);
+    const [allReviews, setAllReviews] = useState([]);
 
-    const handlePlaceReview = event => {
-        event.preventDefault();
-        const form = event.target;
-        const name = `${form.firstName.value} ${form.lastName.value}`;
-        const email = user?.email || 'unregistered';
-        const phone = form.phone.value;
-        const message = form.message.value;
-
-        const review = {
-            service: _id,
-            serviceName: title,
-            price,
-            customer: name,
-            email,
-            phone,
-            message
-        }
-
-        fetch('http://localhost:5000/myreviews', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            },
-            body: JSON.stringify(review)
-        })
+    useEffect(() => {
+        fetch(`http://localhost:5000/myreviews`)
             .then(res => res.json())
             .then(data => {
+                setAllReviews(data)
                 console.log(data)
-                if (data.acknowledged) {
-                    alert('Order placed successfully')
-                    form.reset();
-                }
-            })
-            .catch(er => console.error(er));
+            }
+            )
+    }, [])
 
-
-    }
 
     return (
         <div>
-            <form onSubmit={handlePlaceReview}>
-                <h2 className="text-4xl">You are about to order: {title}</h2>
-                <h4 className="text-3xl">Price: {price}</h4>
-                <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
-                    <input name="firstName" type="text" placeholder="First Name" className="input input-ghost w-full  input-bordered" />
-                    <input name="lastName" type="text" placeholder="Last Name" className="input input-ghost w-full  input-bordered" />
-                    <input name="phone" type="text" placeholder="Your Phone" className="input input-ghost w-full  input-bordered" required />
-                    <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className="input input-ghost w-full  input-bordered" readOnly />
+            <div className="card w-1/2 bg-base-100 shadow-xl mx-auto">
+                <figure><img src={img} alt="Shoes" /></figure>
+                <div className="card-body">
+                    <h2 className="card-title">{title}</h2>
+                    <p>{description}</p>
+                    <Link to={`/addreviews/${_id}`} className="card-actions justify-end">
+                        <button className="btn btn-primary">Add Review</button>
+                    </Link>
                 </div>
-                <textarea name="message" className="textarea textarea-bordered h-24 w-full" placeholder="Your Message" required></textarea>
+            </div>
 
-                <input className='btn' type="submit" value="Submit Review" />
-            </form>
+            <h3 className="font-semibold mb-6 px-20 text-2xl text-purple-700">Reviews of the service</h3>
+            <div className="overflow-x-auto w-full">
+                {
+                    allReviews.length > 0 ?
+                        <table className="table w-full">
+                            <tbody>
+                                {
+                                    allReviews &&
+                                    allReviews.map(review => {
+
+                                        return <tr className=''>
+                                            <td className=''>
+                                                {
+                                                    user && user?.photoURL !== null ?
+                                                        <>
+                                                            <div className="avatar">
+                                                                <div className="w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                                    <img src={user.photoURL} alt="user img" />
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <div className="avatar">
+                                                                <div className="w-14  rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                                                    <img src={`https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?b=1&s=170667a&w=0&k=20&c=-qQGlKM8OQsSJCEkHnqS9FI94VRTkZ-7tg0K0u02XL0=`} alt="avatar" />
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                }
+
+                                            </td>
+
+                                            <td className='ms-0'>Reviewer Name: {review.customer}</td>
+                                            <td>Review: {review.message}</td>
+                                        </tr>
+                                    })
+                                }
+                            </tbody>
+                        </table>
+                        :
+                        <pc className="text-">No reviews here</pc>
+                }
+            </div>
         </div>
     );
 };

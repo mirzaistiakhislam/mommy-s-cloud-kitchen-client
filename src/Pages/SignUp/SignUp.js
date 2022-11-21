@@ -11,6 +11,7 @@ const SignUp = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        const photoUrl = form.photoUrl.value;
 
         createUser(email, password)
             .then(result => {
@@ -29,18 +30,28 @@ const SignUp = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 pb-10">
                     <form onSubmit={handleSignUp} className="card-body">
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
                             <input type="text" name='name' placeholder="Enter your name" className="input input-bordered" />
                         </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="text" name='email' placeholder="Enter your email" className="input input-bordered" required />
                         </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">PhotoURL</span>
+                            </label>
+                            <input type="text" name='photoUrl' placeholder="Enter your PhotoURL" className="input input-bordered" />
+                        </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
