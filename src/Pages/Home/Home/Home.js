@@ -10,8 +10,8 @@ const Home = () => {
         <div>
             <Banner></Banner>
             <HomePageServices></HomePageServices>
-            <Link to="/services">
-                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">See All</button>
+            <Link className='grid place-content-center mb-20' to="/services">
+                <button className="btn btn-outline">See All</button>
             </Link>
             <About></About>
             <Working></Working>
