@@ -14,6 +14,7 @@ const Header = () => {
 
     const menuItems = <>
         <li className='font-semibold'><Link to='/'>Home</Link></li>
+        <li className='font-semibold'><Link to='/services'>Services</Link></li>
         {
             user?.email ?
                 <>
@@ -28,7 +29,7 @@ const Header = () => {
     </>
 
     return (
-        <div className="navbar h-20 mb-12 bg-base-100">
+        <div className="navbar h-24 bg-base-100">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -38,9 +39,12 @@ const Header = () => {
                         {menuItems}
                     </ul>
                 </div>
+
                 <Link to="/" className="btn btn-ghost normal-case text-xl">
-                    <img src={logo} alt="" width="100" height="50" />
+                    <img src={logo} alt="" width="100" className='h-8 mb-1.5' />
+                    <h2 className=''>Mommy's Cloud Kitchen</h2>
                 </Link>
+
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
