@@ -12,7 +12,7 @@ const Services = () => {
     return (
         <div className='my-12'>
             <div className='text-center my-12'>
-                <h2 className='text-5xl font-semibold'>Our Services</h2>
+                <h2 className='text-5xl font-semibold '>Our Services</h2>
             </div>
             <div className='grid gap-6'>
                 {

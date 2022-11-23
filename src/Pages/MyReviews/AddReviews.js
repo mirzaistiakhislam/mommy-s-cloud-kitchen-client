@@ -31,7 +31,6 @@ const AddReviews = () => {
             customer: name,
             email,
             message,
-            // image: photoURL
             photoURL: photoUrl
 
         }
@@ -47,7 +46,7 @@ const AddReviews = () => {
             .then(data => {
                 // console.log(data)
                 if (data.acknowledged) {
-                    toast.success('Review Placed Successfully', {
+                    toast.success('Review Added Successfully', {
                         position: "top-center"
                     });
                     form.reset();
@@ -56,19 +55,20 @@ const AddReviews = () => {
             .catch(error => console.error(error));
     }
     return (
-        <form onSubmit={handlePlaceReview}>
-            <h2 className="text-4xl">Enter Your Review About: {title}</h2>
+        <form onSubmit={handlePlaceReview} className="grid place-content-center">
+            <h2 className="text-4xl text-center my-6">Enter Your Review About: <span className='text-4xl font-bold'>{title}</span></h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                 <input name="name" type="text" placeholder="Enter your name"
-                    defaultValue={user?.customer} className="input input-ghost w-full  input-bordered" required />
+                    defaultValue={user?.customer} className="input input-ghost w-full input-bordered" required /> <br />
 
-                <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className="input input-ghost w-full  input-bordered" readOnly />
+                <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className="input input-ghost w-full  input-bordered" readOnly /> <br />
 
-                <input name="photoUrl" type="text" defaultValue={user?.photoURL} className="input input-ghost w-full  input-bordered" readOnly />
+                <input name="photoUrl" type="text" defaultValue={user?.photoURL} className="input input-ghost w-full  input-bordered" readOnly /> <br />
+
+                <textarea name="message" className="textarea textarea-bordered h-24 w-full" placeholder="Your Message" required></textarea>
             </div>
-            <textarea name="message" className="textarea textarea-bordered h-24 w-full" placeholder="Your Message" required></textarea>
 
-            <input className='btn' type="submit" value="Submit Review" />
+            <input className='btn mt-4 mb-12' type="submit" value="Submit Review" />
             <ToastContainer />
         </form>
     );

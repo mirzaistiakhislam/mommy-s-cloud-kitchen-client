@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateReview = () => {
 
@@ -25,10 +27,15 @@ const UpdateReview = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data)
+                if (data.acknowledged) {
+                    toast.success('Review Updated Successfully', {
+                        position: "top-center"
+                    });
+                    form.reset();
+                }
             })
-            .catch(error => console.error(error))
-
+            .catch(error => console.error(error));
     }
 
     return (
@@ -58,6 +65,7 @@ const UpdateReview = () => {
             <div className="form-control mt-6">
                 <input type="submit" className="btn btn-primary" value="Submit" />
             </div>
+            <ToastContainer />
         </form>
     );
 };

@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
 
@@ -21,8 +23,12 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                toast.success('Registration successfull', {
+                    position: "top-center"
+                });
                 form.reset();
                 handleUpdateUserProfile(name, photoUrl);
+
             })
             .catch(error => console.error(error));
     }
@@ -82,6 +88,7 @@ const SignUp = () => {
                     <p className='text-center'>Already have an account? <Link className='text-blue-600 font-bold' to="/login">Login</Link></p>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

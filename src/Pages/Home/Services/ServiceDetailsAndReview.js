@@ -28,6 +28,7 @@ const ServiceDetailsAndReview = () => {
     return (
         <div>
             <div className="card w-2/2 bg-base-100 shadow-xl mx-auto mb-20">
+                <h2 className='text-4xl text-center mb-6 font-bold'>Service Details</h2>
                 <figure><img src={img} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
@@ -72,7 +73,7 @@ const ServiceDetailsAndReview = () => {
 
                                             </td>
 
-                                            <td className='ms-0'>Reviewer Name: {review.customer}</td>
+                                            <td className='ms-0'>Name: {review.customer}</td>
                                             <td>Review: {review.message}</td>
                                         </tr>
                                     })

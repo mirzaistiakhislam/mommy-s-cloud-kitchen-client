@@ -4,7 +4,7 @@ import aboutUs from '../../../assets/Aboutus.jpg'
 const About = () => {
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse mb-20">
+            <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src={aboutUs} alt="" className="max-w-sm rounded-lg shadow-2xl w-1/2" />
                 <div className='w-1/2'>
                     <h1 className="text-5xl font-bold">About Us!</h1>
