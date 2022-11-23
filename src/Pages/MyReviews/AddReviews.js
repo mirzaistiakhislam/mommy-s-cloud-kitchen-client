@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../hooks/useTitle';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddReviews = () => {
 
@@ -11,7 +13,7 @@ const AddReviews = () => {
     const { _id, title } = loader;
 
     console.log(_id, title);
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     // console.log(user.photoURL);
 
 
@@ -37,7 +39,7 @@ const AddReviews = () => {
         fetch('http://localhost:5000/myreviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
             body: JSON.stringify(review)
         })
@@ -45,7 +47,9 @@ const AddReviews = () => {
             .then(data => {
                 // console.log(data)
                 if (data.acknowledged) {
-                    alert('Review placed successfully')
+                    toast.success('Review Placed Successfully', {
+                        position: "top-center"
+                    });
                     form.reset();
                 }
             })
@@ -65,6 +69,7 @@ const AddReviews = () => {
             <textarea name="message" className="textarea textarea-bordered h-24 w-full" placeholder="Your Message" required></textarea>
 
             <input className='btn' type="submit" value="Submit Review" />
+            <ToastContainer />
         </form>
     );
 };

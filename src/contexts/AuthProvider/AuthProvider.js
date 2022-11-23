@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true);
+        localStorage.removeItem('mck-token');
         return signOut(auth);
     }
 

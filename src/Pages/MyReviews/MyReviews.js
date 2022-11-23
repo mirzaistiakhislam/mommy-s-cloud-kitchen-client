@@ -9,26 +9,34 @@ const MyReviews = () => {
 
     useTitle('My Reviews');
 
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    const { user, logOut } = useContext(AuthContext);
+    // console.log(user);
 
     const [myReviews, setMyReviews] = useState([]);
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setMyReviews(data)
-                console.log(data)
+        fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('mck-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return logOut();
+                }
+                return res.json();
             })
-    }, [user?.email])
+            .then(data => {
+                setMyReviews(data);
+            })
+    }, [user?.email, logOut])
 
     const handleDelete = id => {
 
 
         fetch(`http://localhost:5000/myreviews/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
         })
             .then(res => res.json())
             .then(data => {

@@ -15,11 +15,11 @@ const ServiceDetailsAndReview = () => {
     const [allReviews, setAllReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews`)
+        fetch(`http://localhost:5000/servicedetailsandreview`)
             .then(res => res.json())
             .then(data => {
                 setAllReviews(data)
-                // console.log(data)
+
             }
             )
     }, [])
