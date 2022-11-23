@@ -38,14 +38,14 @@ const UpdateReview = () => {
                 <label className="label">
                     <span className="label-text">Email</span>
                 </label>
-                <input type="email" name='email' defaultValue={storedUser.email} className="input input-bordered" />
+                <input type="email" name='email' defaultValue={storedUser.email} className="input input-bordered" readOnly />
             </div>
 
             <div className="form-control">
                 <label className="label">
                     <span className="label-text">Name</span>
                 </label>
-                <input type="text" name='name' defaultValue={storedUser.customer} className="input input-bordered" />
+                <input type="text" name='name' defaultValue={storedUser.customer} className="input input-bordered" readOnly />
             </div>
 
             <div className="form-control">

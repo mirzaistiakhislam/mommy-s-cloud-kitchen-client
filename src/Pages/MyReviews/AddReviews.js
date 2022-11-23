@@ -54,7 +54,7 @@ const AddReviews = () => {
             <h2 className="text-4xl">Enter Your Review About: {title}</h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                 <input name="name" type="text" placeholder="Enter your name"
-                    defaultValue={user?.customer} className="input input-ghost w-full  input-bordered" required readOnly />
+                    defaultValue={user?.customer} className="input input-ghost w-full  input-bordered" required />
 
                 <input name="email" type="text" placeholder="Your email" defaultValue={user?.email} className="input input-ghost w-full  input-bordered" readOnly />
 

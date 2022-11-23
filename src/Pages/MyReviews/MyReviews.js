@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewRow from './MyReviewRow';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviews = () => {
 
@@ -20,21 +22,23 @@ const MyReviews = () => {
     }, [user?.email])
 
     const handleDelete = id => {
-        const proceed = window.confirm('Are you sure, you want to delete?');
-        if (proceed) {
-            fetch(`http://localhost:5000/myreviews/${id}`, {
-                method: 'DELETE'
+
+
+        fetch(`http://localhost:5000/myreviews/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    toast.success('deleted successfully', {
+                        position: "top-center"
+                    });
+                    const remaining = myReviews.filter(rvw => rvw._id !== id);
+                    setMyReviews(remaining);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.deletedCount > 0) {
-                        alert('deleted successfully');
-                        const remaining = myReviews.filter(rvw => rvw._id !== id);
-                        setMyReviews(remaining);
-                    }
-                })
-        }
+
     }
 
     return (
@@ -53,6 +57,7 @@ const MyReviews = () => {
 
 
             </table>
+            <ToastContainer />
         </div>
     );
 };

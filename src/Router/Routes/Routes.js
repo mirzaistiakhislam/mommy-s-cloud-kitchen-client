@@ -8,6 +8,9 @@ import AddReviews from "../../Pages/MyReviews/AddReviews";
 import MyReviews from "../../Pages/MyReviews/MyReviews";
 import UpdateReview from "../../Pages/MyReviews/UpdateReview";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AddService from "../../Pages/Home/Services/AddService";
+import Blogs from "../../Pages/Blogs/Blogs";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -39,17 +42,25 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addreviews/:id',
-                element: <AddReviews></AddReviews>,
+                element: <PrivateRoute><AddReviews></AddReviews></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: '/updatereview/:id',
-                element: <UpdateReview></UpdateReview>,
+                element: <PrivateRoute><UpdateReview></UpdateReview></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/myreviews/${params.id}`)
+            },
+            {
+                path: '/addservice',
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path: '/myreviews',
                 element: <MyReviews></MyReviews>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
             }
         ]
     }

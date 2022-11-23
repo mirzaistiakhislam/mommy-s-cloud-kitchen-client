@@ -16,7 +16,7 @@ const ServiceDetailsAndReview = () => {
             .then(res => res.json())
             .then(data => {
                 setAllReviews(data)
-                console.log(data)
+                // console.log(data)
             }
             )
     }, [])
@@ -24,18 +24,19 @@ const ServiceDetailsAndReview = () => {
 
     return (
         <div>
-            <div className="card w-1/2 bg-base-100 shadow-xl mx-auto">
-                <figure><img src={img} alt="Shoes" /></figure>
+            <div className="card w-2/2 bg-base-100 shadow-xl mx-auto mb-20">
+                <figure><img src={img} alt="" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     <p>{description}</p>
+                    <p className='font-bold mt-6'>Price: ${price}</p>
                     <Link to={`/addreviews/${_id}`} className="card-actions justify-end">
                         <button className="btn btn-primary">Add Review</button>
                     </Link>
                 </div>
             </div>
 
-            <h3 className="font-semibold mb-6 px-20 text-2xl text-purple-700">Reviews of the service</h3>
+            <h3 className="font-semibold mb-6 px-20 text-4xl text-center">All Reviews </h3>
             <div className="overflow-x-auto w-full">
                 {
                     allReviews.length > 0 ?

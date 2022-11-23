@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviewRow = ({ myReview, handleDelete }) => {
 
@@ -20,6 +22,7 @@ const MyReviewRow = ({ myReview, handleDelete }) => {
                     <th>
                         <label>
                             <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>X</button>
+
                         </label>
                     </th>
                     <td>

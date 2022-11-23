@@ -1,12 +1,16 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
     const { login, googleProviderLogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -17,6 +21,8 @@ const Login = () => {
         login(email, password)
             .then(result => {
                 const user = result.user;
+                form.reset();
+                navigate(from, { replace: true });
             })
             .then(error => console.error(error));
     }
@@ -51,17 +57,15 @@ const Login = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+
                         </div>
                         <div className="form-control mt-6">
                             <input type="submit" className="btn btn-primary" value="Login" />
                         </div>
                     </form>
                     <p className='text-center'>New to Mommy's Cloud Kitchen? <Link className='text-blue-600 font-bold' to="/signup">Sign Up</Link></p>
-                    <div className="form-control mt-6">
-                        <input onClick={handleGoogleSignIn} type="submit" className="btn btn-md" value="Login With Google" />
+                    <div className="form-control mt-6 px-8">
+                        <button onClick={handleGoogleSignIn} className="btn btn-outline">Login With Google</button>
                     </div>
                 </div>
 
