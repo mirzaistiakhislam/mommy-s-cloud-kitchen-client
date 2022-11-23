@@ -3,8 +3,11 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewRow from './MyReviewRow';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/useTitle';
 
 const MyReviews = () => {
+
+    useTitle('My Reviews');
 
     const { user } = useContext(AuthContext);
     console.log(user);

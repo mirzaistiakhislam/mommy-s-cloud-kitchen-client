@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const AddReviews = () => {
 
+    useTitle('Add Review');
     const loader = useLoaderData();
 
     const { _id, title } = loader;
